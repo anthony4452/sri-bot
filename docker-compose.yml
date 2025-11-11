@@ -1,0 +1,17 @@
+
+services:
+  node-red:
+    build: .
+    container_name: sri-bot
+    ports:
+      - "1880:1880" #NODE-RED
+      - "6080:6080" #NO VNC
+    volumes:
+      - ./flows:/usr/src/node-red/flows
+      - ./scripts:/usr/src/scripts
+      - ./logs:/usr/src/logs
+      - ./descargas:/usr/src/descargas
+      - ./supervisord.conf:/etc/supervisord.conf
+    environment:
+      - DISPLAY=:99
+    restart: always

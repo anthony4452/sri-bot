@@ -1,0 +1,457 @@
+[
+    {
+        "id": "tab_recibidas",
+        "type": "tab",
+        "label": "Recibidas",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "tab_emitidas",
+        "type": "tab",
+        "label": "Emitidas",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ui_group_recibidas",
+        "type": "ui_group",
+        "name": "Recibidas",
+        "tab": "4d6863dc958986b7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ui_group_emitidas",
+        "type": "ui_group",
+        "name": "Emitidas",
+        "tab": "1cb4324058f78acb",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1cb4324058f78acb",
+        "type": "ui_tab",
+        "name": "Emitidas",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e2295affb476d1ef",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "4d6863dc958986b7",
+        "type": "ui_tab",
+        "name": "Recibidas",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_form_recibidas",
+        "type": "ui_form",
+        "z": "tab_recibidas",
+        "name": "Formulario Recibidas",
+        "label": "Datos de acceso SRI",
+        "group": "ui_group_recibidas",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "RUC",
+                "value": "ruc",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Cédula adicional",
+                "value": "ci",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Clave",
+                "value": "clave",
+                "type": "password",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Año",
+                "value": "ano",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Mes",
+                "value": "mes",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "ruc": "",
+            "ci": "",
+            "clave": "",
+            "ano": "",
+            "mes": ""
+        },
+        "submit": "Ejecutar descarga",
+        "cancel": "",
+        "topic": "",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "func_recibidas"
+            ]
+        ]
+    },
+    {
+        "id": "func_recibidas",
+        "type": "function",
+        "z": "tab_recibidas",
+        "name": "Preparar comando Recibidas",
+        "func": "const { ruc, ci, clave, ano, mes } = msg.payload;\nconst timestamp = new Date().toISOString().replace(/[:.]/g,'_');\nmsg.payload = `bash -c \\\"DISPLAY=:99 nohup python3 /usr/src/scripts/download_recibidas.py ${ruc} ${ci} ${clave} ${ano} ${mes} > /usr/src/logs/recibidas/recibidas_${ruc}_${timestamp}.log 2>&1 &\\\"`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "exec_recibidas"
+            ]
+        ]
+    },
+    {
+        "id": "exec_recibidas",
+        "type": "exec",
+        "z": "tab_recibidas",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Ejecutar Bot Recibidas",
+        "x": 700,
+        "y": 120,
+        "wires": [
+            [
+                "func_recibidas_status"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "func_recibidas_status",
+        "type": "function",
+        "z": "tab_recibidas",
+        "name": "Estado Recibidas",
+        "func": "msg.payload = '🎉 Finalizado correctamente';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 120,
+        "wires": [
+            [
+                "ui_text_recibidas"
+            ]
+        ]
+    },
+    {
+        "id": "ui_text_recibidas",
+        "type": "ui_text",
+        "z": "tab_recibidas",
+        "group": "ui_group_recibidas",
+        "order": 2,
+        "width": "6",
+        "height": "2",
+        "name": "Estado Recibidas",
+        "label": "Estado del proceso",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1100,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ui_form_emitidas",
+        "type": "ui_form",
+        "z": "tab_emitidas",
+        "name": "Formulario Emitidas",
+        "label": "Datos de acceso SRI",
+        "group": "ui_group_emitidas",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "RUC",
+                "value": "ruc",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Cédula adicional",
+                "value": "ci",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Clave",
+                "value": "clave",
+                "type": "password",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Fecha (dd/mm/yyyy)",
+                "value": "fecha",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Estado (AUT/NAT/PPR)",
+                "value": "estado",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Tipo (1-6)",
+                "value": "tipo",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Establecimiento",
+                "value": "establecimiento",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "ruc": "",
+            "ci": "",
+            "clave": "",
+            "fecha": "",
+            "estado": "",
+            "tipo": "",
+            "establecimiento": ""
+        },
+        "submit": "Ejecutar descarga",
+        "cancel": "",
+        "topic": "",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "func_emitidas"
+            ]
+        ]
+    },
+    {
+        "id": "func_emitidas",
+        "type": "function",
+        "z": "tab_emitidas",
+        "name": "Preparar comando Emitidas",
+        "func": "const { ruc, ci, clave, fecha, estado, tipo, establecimiento } = msg.payload;\nconst timestamp = new Date().toISOString().replace(/[:.]/g,'_');\nmsg.payload = `bash -c \"DISPLAY=:99 nohup python3 /usr/src/scripts/download_emitidas.py ${ruc} ${ci} ${clave} ${fecha} ${estado} ${tipo} '${establecimiento}' > /usr/src/logs/emitidas/emitidas_${ruc}_${timestamp}.log 2>&1 &\"`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "exec_emitidas"
+            ]
+        ]
+    },
+    {
+        "id": "exec_emitidas",
+        "type": "exec",
+        "z": "tab_emitidas",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Ejecutar Bot Emitidas",
+        "x": 700,
+        "y": 120,
+        "wires": [
+            [
+                "func_emitidas_status"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "func_emitidas_status",
+        "type": "function",
+        "z": "tab_emitidas",
+        "name": "Estado Emitidas",
+        "func": "msg.payload = '🎉 Finalizado correctamente';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 120,
+        "wires": [
+            [
+                "ui_text_emitidas"
+            ]
+        ]
+    },
+    {
+        "id": "ui_text_emitidas",
+        "type": "ui_text",
+        "z": "tab_emitidas",
+        "group": "ui_group_emitidas",
+        "order": 2,
+        "width": "6",
+        "height": "2",
+        "name": "Estado Emitidas",
+        "label": "Estado del proceso",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1100,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d37b0b4dc20d1792",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
