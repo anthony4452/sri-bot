@@ -1,2 +1,4 @@
 # Archivo: .gitignore
 flows/
+descargas/
+logs/
