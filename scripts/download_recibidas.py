@@ -4,6 +4,9 @@ import os
 import sys
 from datetime import datetime
 from playwright.sync_api import Playwright, sync_playwright
+import xml.etree.ElementTree as ET
+import pandas as pd
+
 
 os.environ["DISPLAY"] = ":99"
 
@@ -129,6 +132,76 @@ def run(playwright: Playwright) -> None:
     print("🎉 Proceso finalizado correctamente.")
     context.close()
     browser.close()
+
+
+    # === Paso 7: Convertir XMLs a Excel (uno por producto) ===
+    print("📊 Generando Excel con los datos de las facturas emitidas...")
+
+    def extraer_datos_xml_emitidas(carpeta):
+        registros = []
+        for archivo in os.listdir(carpeta):
+            if not archivo.endswith(".xml"):
+                continue
+
+            ruta_xml = os.path.join(carpeta, archivo)
+            try:
+                tree = ET.parse(ruta_xml)
+                root = tree.getroot()
+
+                # Extraer bloque CDATA del XML
+                cdata = root.findtext(".//comprobante")
+                if not cdata:
+                    print(f"⚠️ No se encontró bloque <comprobante> en {archivo}")
+                    continue
+
+                cdata = cdata.strip()
+                factura_root = ET.fromstring(cdata)
+
+                # Quitar namespaces
+                for elem in factura_root.iter():
+                    if '}' in elem.tag:
+                        elem.tag = elem.tag.split('}', 1)[1]
+
+                # Datos generales de la factura
+                info_general = {
+                    "Archivo": archivo,
+                    "RUC Emisor": factura_root.findtext(".//ruc"),
+                    "Razon Social Emisor": factura_root.findtext(".//razonSocial"),
+                    "Razon Social Comprador": factura_root.findtext(".//razonSocialComprador"),
+                    "RUC Comprador": factura_root.findtext(".//identificacionComprador"),
+                    "Fecha Emision": factura_root.findtext(".//fechaEmision"),
+                    "Subtotal Factura": factura_root.findtext(".//totalSinImpuestos"),
+                    "IVA Factura": factura_root.findtext(".//totalImpuesto/valor"),
+                    "Total Factura": factura_root.findtext(".//importeTotal"),
+                }
+
+                # Recorrer todos los productos
+                detalles = factura_root.findall(".//detalle")
+                for det in detalles:
+                    registro = info_general.copy()
+                    registro.update({
+                        "Codigo": det.findtext("codigoPrincipal"),
+                        "Descripcion": det.findtext("descripcion"),
+                        "Cantidad": det.findtext("cantidad"),
+                        "Precio Unitario": det.findtext("precioUnitario"),
+                        "Precio Total Sin Impuesto": det.findtext("precioTotalSinImpuesto"),
+                    })
+                    registros.append(registro)
+
+            except Exception as e:
+                print(f"❌ Error procesando {archivo}: {e}")
+
+        return registros
+
+    datos = extraer_datos_xml_emitidas(download_folder)
+    if datos:
+        df = pd.DataFrame(datos)
+        excel_path = os.path.join(download_folder, f"facturas_emitidas_{ruc}_{timestamp}.xlsx")
+        df.to_excel(excel_path, index=False)
+        print(f"✅ Excel generado correctamente: {excel_path}")
+    else:
+        print("⚠️ No se encontraron XML válidos para generar Excel.")
+
 
 
 if __name__ == "__main__":
