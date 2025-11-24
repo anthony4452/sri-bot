@@ -65,7 +65,15 @@ def run(playwright: Playwright) -> None:
 
     # === Paso 2: Navegar al módulo de facturación ===
     print("➡️ Accediendo al módulo de facturación...")
-    page.locator("sri-titulo-modal-mat div").nth(2).click()
+
+    # === Cerrar modal interno y navegar a emitidas ===
+    print("➡️ Accediendo al módulo de facturación...")
+    try:
+        page.locator("sri-titulo-modal-mat div").nth(2).click()
+        print("✅ Modal interno cerrado")
+    except:
+        print("ℹ️ No apareció el modal interno, continuando...")
+
     page.get_by_role("button", name="Abrir o cerrar menu desplegado").click()
     page.get_by_role("link", name="  FACTURACIÓN ELECTRÓNICA").click()
     page.get_by_role("link", name=" Producción").click()
